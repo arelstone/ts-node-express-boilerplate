@@ -7,5 +7,6 @@ git clone git@github.com:arelstone/ts-node-express-boilerplate.git
 cd into directory
 npm install
 rm -rf .git
+cp env.example .env
 git init
 ```
