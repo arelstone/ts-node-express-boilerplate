@@ -1,9 +1,9 @@
-import * as dotenv from "dotenv";
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
+import * as dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
 import Router from './Router';
-import { morganMiddleware } from "./middleware/morgan";
+import { morganMiddleware } from './middleware/morgan';
 
 dotenv.config();
 
@@ -19,10 +19,10 @@ export default class App {
     }
 
     config = () => {
-        this.app.use(helmet())
+        this.app
+            .use(helmet())
             .use(cors())
             .use(express.json())
-            .use(morganMiddleware)
-
-    }
+            .use(morganMiddleware);
+    };
 }
