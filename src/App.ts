@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import express from 'express';
+import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import Router from './Router';
@@ -8,13 +8,11 @@ import { morganMiddleware } from './middleware/morgan';
 dotenv.config();
 
 export default class App {
-    app: express.Application;
+    app: Application;
 
     constructor() {
         this.app = express();
-
         this.config();
-
         new Router(this.app);
     }
 
