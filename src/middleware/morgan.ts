@@ -1,9 +1,9 @@
-import morgan from 'morgan';
-import chalk from 'chalk'; // or you can use the require('chalk') syntax too
+import morgan, { TokenIndexer } from 'morgan';
+import chalk from 'chalk';
+import { Request, Response } from 'express';
 
-export const morganMiddleware = morgan((tokens, req, res) => {
+export const morganMiddleware = morgan((tokens: TokenIndexer, req: Request, res: Response) => {
     return [
-        '\n',
         chalk.hex('#34ace0').bold(`-> [${tokens.method(req, res)}]`),
         chalk.hex('#ffb142').bold(tokens.status(req, res)),
         chalk.hex('#ff5252').bold(tokens.url(req, res)),
