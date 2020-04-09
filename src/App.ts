@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import BodyParser from 'body-parser';
+import bodyParser from 'body-parser';
 import { morganMiddleware } from './middleware/morgan';
 import Router from './Router';
 
@@ -13,16 +13,17 @@ export default class App {
 
     constructor() {
         this.app = express();
-        this.config();
+        this.setup();
         new Router(this.app);
     }
 
-    config = () => {
+    setup = () => {
         this.app
             .use(helmet())
             .use(cors())
             .use(express.json())
-            .use(BodyParser.json({ type: 'application/json' }))
+            .use(bodyParser.urlencoded({ extended: true, type: "*/*" }))
+            .use(bodyParser.json({ type: "*/*" }))
             .use(morganMiddleware);
     };
 }
